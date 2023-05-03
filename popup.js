@@ -13,6 +13,9 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Get the form element
   const myForm = document.getElementById('mainform');
+  const searchButton = document.getElementById('search-button');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
 
   // Add an event listener to the form's submit button
   myForm.addEventListener('submit', function(event) {
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var subject = document.getElementById("subject").value;
     var message = document.getElementById("message").value;
     var profiles = document.getElementById("profiles").value;
+
     console.log('Entered information, username is: ' + username, 'subject is ' + subject);
 
     const data = {
@@ -55,13 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       });
-    
-
-
-
-
 
   });
-});
 
+  searchButton.addEventListener('click', () => {
+    console.log('Pressed');
+    const query = encodeURIComponent(searchInput.value);
+    const url = `https://www.linkedin.com/search/results/people/?keywords=${query}`;
+    searchResults.src = url;
+  });
+
+});
 

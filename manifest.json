@@ -1,19 +1,25 @@
 {
-    "manifest_version": 3,
-    "name": "Linkedin Bot",
-    "description": "Base Level Extension",
-    "version": "1.0",
-    "background.service_worker": {
-        "scripts": ["background.js"],
-        "type": "module"
-      },
-    "action": {
-      "default_popup": "mainPopup.html",
-      "default_icon": "hi.png",
-      "default_title": "My Extension"
-    },
-    "permissions": [
-        "activeTab",
-        "storage"
-      ]
-  }
+  "manifest_version": 3,
+  "name": "Linkedin Bot",
+  "description": "Sends messages to linked in profiles automatically.",
+  "version": "1.0",
+
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+  }],
+
+  "action": {
+    "default_popup": "mainPopup.html",
+    "default_icon": "hi.png",
+    "default_title": "My Extension"
+  },
+
+  "host_permissions": ["<all_urls>"],
+
+  "permissions": [
+      "activeTab",
+      "storage"
+    ]
+}

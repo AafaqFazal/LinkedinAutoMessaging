@@ -14,12 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Get the form element
   const myForm = document.getElementById('mainform');
-<<<<<<< Updated upstream
-=======
 
   // Create an array to store profile links
   const profileLinks = [];
->>>>>>> Stashed changes
 
   // Add an event listener to the form's submit button
   myForm.addEventListener('submit', function(event) {
@@ -69,11 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   });
-<<<<<<< Updated upstream
-=======
 
   
->>>>>>> Stashed changes
 });
 
 

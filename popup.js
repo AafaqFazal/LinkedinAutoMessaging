@@ -1,18 +1,25 @@
-// document.addEventListener('DOMContentLoaded', function(){
-// document.getElementById("send").addEventListener("click", async function() {
-//     var username = document.getElementById("username").value;
-//     var password = document.getElementById("password").value;
-//     var message = document.getElementById("message").value;
-//     var profiles = document.getElementById("profiles").value;
-    
-//     // Do something with the username, password, message, and profiles variables
-
-//   });
-// });
 
 document.addEventListener('DOMContentLoaded', function() {
+
+  chrome.storage.local.get(['linkedinProfiles'], (result) => {
+    const linkedinProfiles = result.linkedinProfiles;
+  
+    if (linkedinProfiles && linkedinProfiles.length > 0) {
+      const textarea = document.getElementById("profiles");
+      textarea.value = linkedinProfiles.join('\n');
+    }
+  });
+  
+
+
   // Get the form element
   const myForm = document.getElementById('mainform');
+<<<<<<< Updated upstream
+=======
+
+  // Create an array to store profile links
+  const profileLinks = [];
+>>>>>>> Stashed changes
 
   // Add an event listener to the form's submit button
   myForm.addEventListener('submit', function(event) {
@@ -62,6 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   });
+<<<<<<< Updated upstream
+=======
+
+  
+>>>>>>> Stashed changes
 });
 
 

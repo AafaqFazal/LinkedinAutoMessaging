@@ -1,15 +1,67 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+  // chrome.storage.local.get(['linkedinProfiles'], (result) => {
+  //   const linkedinProfiles = result.linkedinProfiles;
+  
+  //   if (linkedinProfiles && linkedinProfiles.length > 0) {
+  //     const textarea = document.getElementById("profiles");
+  //     textarea.value = linkedinProfiles.join('\n');
+  //   }
+  // });
+  
+  // chrome.storage.local.get(['linkedinProfiles'], (result) => {
+  //   const linkedinProfiles = result.linkedinProfiles;
+  
+  //   if (linkedinProfiles && linkedinProfiles.length > 0) {
+  //     const tableBody = document.querySelector("#profiles-table tbody");
+  
+  //     linkedinProfiles.forEach((profile) => {
+  //       const newRow = document.createElement("tr");
+  //       const profileCell = document.createElement("td");
+  //       profileCell.textContent = profile;
+  //       newRow.appendChild(profileCell);
+  //       tableBody.appendChild(newRow);
+  //     });
+  //   }
+  // });
+  
+
   chrome.storage.local.get(['linkedinProfiles'], (result) => {
     const linkedinProfiles = result.linkedinProfiles;
   
     if (linkedinProfiles && linkedinProfiles.length > 0) {
-      const textarea = document.getElementById("profiles");
-      textarea.value = linkedinProfiles.join('\n');
+      const tableBody = document.querySelector("#profiles-table tbody");
+  
+      linkedinProfiles.forEach((profile) => {
+        const newRow = document.createElement("tr");
+        const profileCell = document.createElement("td");
+        profileCell.textContent = profile;
+        newRow.appendChild(profileCell);
+  
+        const deleteButtonCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "X";
+        deleteButton.addEventListener("click", () => {
+          // Remove the row from the table
+          newRow.remove();
+  
+          // Remove the profile from the array
+          const index = linkedinProfiles.indexOf(profile);
+          if (index > -1) {
+            linkedinProfiles.splice(index, 1);
+            chrome.storage.local.set({ linkedinProfiles });
+          }
+        });
+        deleteButtonCell.appendChild(deleteButton);
+        newRow.appendChild(deleteButtonCell);
+  
+        tableBody.appendChild(newRow);
+      });
     }
   });
   
+
 
 
   // Get the form element

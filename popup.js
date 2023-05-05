@@ -1,6 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+
+
   // chrome.storage.local.get(['linkedinProfiles'], (result) => {
   //   const linkedinProfiles = result.linkedinProfiles;
   

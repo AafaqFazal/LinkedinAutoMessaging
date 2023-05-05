@@ -1,5 +1,40 @@
 console.log("loaded");
 
+console.debug("Finding the result list");
+// Check if the ul element with class reusable-search__entity-result-list exists
+const searchResultList = document.querySelector('.reusable-search__entity-result-list');
+  if (searchResultList) {
+    console.debug("Found result list");
+    // Get all the li elements inside the ul
+    const profileListItems = searchResultList.querySelectorAll('li');
+    // Loop through each li element and add an "Add Profile" button inside it
+    console.debug("Finding and itrating lis");
+    profileListItems.forEach(item => {
+      const addButton = document.createElement('button');
+      addButton.innerText = 'Add Profile';
+      addButton.style.backgroundColor = '#0077B5';
+      addButton.style.color = 'white';
+      addButton.style.padding = '6px 16px';
+      addButton.style.borderRadius = '24px';
+      addButton.style.fontWeight = 'bold';
+      addButton.style.cursor = 'pointer';
+      // addButton.style.position = 'absolute';
+      addButton.style.marginTop = '10px';
+      addButton.style.marginRight= '10px';
+      addButton.style.bottom = '0';
+      addButton.style.right = '0';
+      addButton.style.width = '130px';
+      addButton.style.height = '50px';
+      addButton.addEventListener('click', () => {
+        // Code to add the profile goes here
+      });
+          // Set the li element to a row layout
+      item.style.display = 'flex';
+      // item.style.justifyContent = 'space-between';
+      item.appendChild(addButton);
+    });
+  }
+
 // Create a button element
 const button = document.createElement('button');
 button.innerText = 'ScrapButton';

@@ -112,4 +112,22 @@ body {
     text-align: left;
     border: 1px solid #ddd;
   }
+
+  .add-profile-button {
+    display: inline-block;
+    background-color: #0073b1;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 10px;
+  }
+  
+  .add-profile-button:hover {
+    background-color: #006097;
+  }
+  
   

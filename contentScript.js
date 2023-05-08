@@ -5,10 +5,11 @@
     console.debug("Finding the result list");
     // Check if the ul element with class reusable-search__entity-result-list exists
     const searchResultList = document.querySelector('.reusable-search__entity-result-list');
+    const profileListItems = searchResultList.querySelectorAll('li');
       if (searchResultList) {
         console.debug("Found result list");
         // Get all the li elements inside the ul
-        const profileListItems = searchResultList.querySelectorAll('li');
+        //const profileListItems = searchResultList.querySelectorAll('li');
         // Loop through each li element and add an "Add Profile" button inside it
         console.debug("Finding and itrating lis");
         profileListItems.forEach(item => {
@@ -27,9 +28,22 @@
           addButton.style.right = '0';
           addButton.style.width = '130px';
           addButton.style.height = '50px';
+
           addButton.addEventListener('click', () => {
-            // Code to add the profile goes here
+            const profileLink = item.querySelector('a.app-aware-link').getAttribute('href');
+            console.log(profileLink);
+            // Get the existing profiles from local storage
+            chrome.storage.local.get('linkedinProfiles', (result) => {
+              const linkedinProfiles = result.linkedinProfiles || [];
+              // Add the new profile to the array
+              linkedinProfiles.push(profileLink);
+              // Save the updated array to local storage
+              chrome.storage.local.set({ 'linkedinProfiles': linkedinProfiles }, () => {
+                console.log(`Saved profile: ${profileLink}`);
+              });
+            });
           });
+
               // Set the li element to a row layout
           item.style.display = 'flex';
           // item.style.justifyContent = 'space-between';
@@ -56,26 +70,25 @@
     }
     
     // Add a click event listener to the button
-    button.addEventListener('click', function() {
-      console.log('clicked');
-    
-      // Find all the links on the page
-      const links = Array.from(document.querySelectorAll('a'));
-    
-      // Filter out the LinkedIn profile URLs
-      const linkedinLinks = links.filter(link => link.href.includes('linkedin.com/in/'));
-    
-      // Save the LinkedIn profile URLs to an array
-      const linkedinProfiles = linkedinLinks.map(link => link.href);
-    
-      console.log(linkedinProfiles);
-    
-      // Save the LinkedIn profile URLs to storage
-      chrome.storage.local.set({ 'linkedinProfiles': linkedinProfiles }).then(() => {
-        console.log("Value is set to ");
-      });
-    
+// Add a click event listener to the button
+button.addEventListener('click', (event) => {
+  // searchResultList = document.querySelector('.reusable-search__entity-result-list');
+  // profileListItems = searchResultList.querySelectorAll('li');
+  if (searchResultList) {
+    const linkedinProfiles = [];
+    profileListItems.forEach(item => {
+      const profileLink = item.querySelector('a.app-aware-link')?.getAttribute('href');
+      if (profileLink) {
+        linkedinProfiles.push(profileLink);
+      }
     });
+    console.log(linkedinProfiles);
+    chrome.storage.local.set({ 'linkedinProfiles': linkedinProfiles }, () => {
+      console.log(`Saved ${linkedinProfiles.length} profiles`);
+    });
+  }
+});
+
 
 
   }, 5000); // Delay of 5 seconds (5000 milliseconds)

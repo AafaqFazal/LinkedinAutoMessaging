@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var password = document.getElementById("password").value;
         var subject = document.getElementById("subject").value;
         var message = document.getElementById("message").value;
-        var profiles = "https://www.linkedin.com/in/malik-waqas-arif-222ba11b4/"; //document.getElementById("profiles").value;
+        var profiles = document.getElementById("profiles").value;
         console.log('Entered information, username is: ' + username, 'subject is ' + subject);
 
         const data = {

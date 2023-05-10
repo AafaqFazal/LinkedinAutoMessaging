@@ -1,7 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
-    document.getElementById('injectScriptBtn').addEventListener('click', function() {
+    document.getElementById('clearAll').addEventListener('click', function() {
+      // Clear the linkedinProfiles storage
+      chrome.storage.local.set({ linkedinProfiles: [] });
+    
+      // Clear the profiles-table
+      const tableBody = document.querySelector("#profiles-table tbody");
+      while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+      }
+    });
+    
+    document.getElementById('activate').addEventListener('click', function() {
         chrome.runtime.sendMessage({ message: 'injectScript' });
     });
 

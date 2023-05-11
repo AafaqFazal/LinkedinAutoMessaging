@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+    var profiles = "";
     document.getElementById('clearAll').addEventListener('click', function() {
       // Clear the linkedinProfiles storage
       chrome.storage.local.set({ linkedinProfiles: [] });
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('activate').addEventListener('click', function() {
         chrome.runtime.sendMessage({ message: 'injectScript' });
+        alert("Injecting script into linkedin people search");
     });
 
 
@@ -50,6 +51,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    chrome.storage.local.get(['linkedinProfiles'], (result) => {
+        const linkedinProfiles = result.linkedinProfiles;
+        if (linkedinProfiles && linkedinProfiles.length > 0) {
+            profiles = linkedinProfiles.join('\n');
+            console.log("profiles in popup: " + profiles); 
+        }
+    });
+    
 
 
 
@@ -67,9 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var password = document.getElementById("password").value;
         var subject = document.getElementById("subject").value;
         var message = document.getElementById("message").value;
-        var profiles = document.getElementById("profiles").value;
-        console.log('Entered information, username is: ' + username, 'subject is ' + subject);
 
+        console.log('profiles: ' + profiles, 'subject is ' + subject);
         const data = {
             email: username,
             password: password,
@@ -86,6 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify(data)
         };
 
+        
+        alert("Starting bot");
         fetch('http://localhost:8000/send_message', options)
             .then(response => {
                 if (!response.ok) {

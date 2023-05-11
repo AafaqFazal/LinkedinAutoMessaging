@@ -54,11 +54,9 @@ async def send_message(email: str = Body(...), password: str = Body(...),subject
     profile_urls_str = listofprofiles
     profile_urls = profile_urls_str.split('\n')
     profile_urls = [url.strip() for url in profile_urls]
-
     # Loop through the list of profile URLs and send the message
     for url in profile_urls:
         driver.get(url)
-        print("Entering profile")
         time.sleep(8)
 
         allButtons = driver.find_elements(By.TAG_NAME,"button")

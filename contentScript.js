@@ -1,6 +1,14 @@
 console.log("loaded");
 // setTimeout(function() {
 // Code to be executed after delay
+
+oldButtons = document.querySelectorAll('#addprofileb');
+
+if (oldButtons.length > 0) {
+  oldButtons.forEach(button => button.remove());
+}
+
+
 console.debug("Finding the result list");
 // Check if the ul element with class reusable-search__entity-result-list exists
 searchResultList = document.querySelector('.reusable-search__entity-result-list');
@@ -13,6 +21,7 @@ if (searchResultList) {
     console.debug("Finding and itrating lis");
     profileListItems.forEach(item => {
         const addButton = document.createElement('button');
+        addButton.id = 'addprofileb';
         addButton.innerText = 'Add Profile';
         addButton.style.backgroundColor = '#0077B5';
         addButton.style.color = 'white';
@@ -41,6 +50,8 @@ if (searchResultList) {
                     console.log(`Saved profile: ${profileLink}`);
                 });
             });
+            alert("Profile saved");
+
         });
 
         // Set the li element to a row layout
@@ -92,6 +103,7 @@ button.addEventListener('click', (event) => {
         chrome.storage.local.set({ 'linkedinProfiles': linkedinProfiles }, () => {
             console.log(`Saved ${linkedinProfiles.length} profiles`);
         });
+        alert("All profiles scrapped");
     }
 });
 

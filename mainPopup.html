@@ -9,8 +9,10 @@
 
   </head>
   <body>
+
     <div class="container">
-      <h1>Send LinkedIn Message</h1>
+      <button id="activate">Activate Script</button>
+        <h1>Send LinkedIn Message</h1>
       <form id="mainform">
         <div class="form-group">
           <label for="username">Username:</label>
@@ -29,25 +31,25 @@
           <input type="text" id="message" name="message" placeholder="Enter your LinkedIn message" required>
         </div>
         <div class="form-group">
+          <div class="table-container">
           <label for="profiles">Profiles:</label>
           <table id="profiles-table" class="profiles-table">
             <thead>
               <tr>
-                <th>LinkedIn Profile</th>
               </tr>
             </thead>
             <tbody>
             </tbody>
           </table>
-
+        </div>
+        <div class="buttons-container">
+          <button id="clearAll">Clear all profiles</button>
+        </div>
         </div>
         
         <button type="submit" id="send">Send Message</button>
       </form>
-      <div class="buttons-container">
-        <button id="clearAll">Clear all profiles</button>
-        <button id="activate">Activate Script</button>
-      </div>
+
       
     </div>
   </body>

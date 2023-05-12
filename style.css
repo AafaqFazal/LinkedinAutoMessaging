@@ -2,7 +2,7 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
+  background-color: #0087f5;
 }
 
 .topbar {
@@ -25,6 +25,7 @@ body {
 h1 {
   font-size: 32px;
   margin: 0px;
+  color: rgb(255, 255, 255);
 }
 
 form {
@@ -45,6 +46,7 @@ label {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 5px;
+  color: rgb(255, 255, 255);
 }
 
 input[type="text"],
@@ -60,17 +62,17 @@ textarea {
 button[type="submit"],
 #activate {
   display: block;
-  background-color: #003cff;
+  background-color: #ff3c00;
   border: none;
   color: #fff;
   font-size: 16px;
   font-weight: 500;
-  padding: 5px 100px;
-  border-radius: 2px;
+  padding: 5px 10px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   margin-top: 10px;
 }
 
@@ -88,7 +90,7 @@ button[type="submit"]:hover,
 }
 
 #profiles-table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
 }
 
@@ -97,6 +99,7 @@ button[type="submit"]:hover,
   padding: 8px;
   text-align: left;
   border: 1px solid #ddd;
+  background-color: #ffffff;
 }
 
 .add-profile-button {
@@ -112,19 +115,32 @@ button[type="submit"]:hover,
   margin-left: 10px;
 }
 
-button[type="submit"],
-#clearAll {
-  background-color: #007bff;
+button[type="submit"] {
+  background-color: #1100ff;
   border: none;
   color: #fff;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 20px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   margin-bottom: 2px;
   margin-top: 10px;
+}
+
+#clearAll {
+  background-color: #ff3c00;;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 2px;
+  margin-top: 0px;
 }
 
 button[type="submit"]:hover,
